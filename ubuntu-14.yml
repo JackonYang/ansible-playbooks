@@ -1,5 +1,5 @@
 ---
-- name: setup ubuntu 14.04
+- name: deploy ubuntu 14.04
   hosts: linode
   vars_files:
     - vars/secrets-ss.yml
