@@ -1,0 +1,11 @@
+# vars required:
+# - repo_url
+# - proj_path
+
+- name: clone and pull lastest source code
+  git:
+    repo={{ repo_url }}
+    dest={{ proj_path }}
+    clone=yes
+    update=yes
+    accept_hostkey=yes

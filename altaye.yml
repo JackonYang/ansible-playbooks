@@ -2,7 +2,8 @@
   hosts: linode
   vars:
       site_name: altaye
-      static_root: /usr/share/nginx/html
+      repo_url: git@github.com:JackonYang/altaye.org.git
+      proj_path: /var/www/altaye
       nginx_conf_tmpl: roles/nginx/templates/static-nginx.conf.j2
   pre_tasks:
     - name: update the apt cache
@@ -12,3 +13,5 @@
       domains:
         - altaye.org
         - www.altaye.org
+      static_root: "{{ proj_path }}"
+    - role: git
