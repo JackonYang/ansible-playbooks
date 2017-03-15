@@ -1,9 +1,12 @@
 ---
-- name: install python-pip
+- name: install apt packages
   apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
   sudo: True
   with_items:
-      - python-pip
+    - python-pip
+    - git
+    - vim
+
 
 - name: upgrade pip
   pip:
