@@ -1,0 +1,27 @@
+# vars required:
+# - nginx_conf_tmpl 
+# - site_name
+
+- name: install apt packages for nginx
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  sudo: True
+  with_items:
+      - nginx
+
+- name: set the nginx config file
+  template: src={{ nginx_conf_tmpl }} dest=/etc/nginx/sites-available/{{ site_name }}.conf
+  notify: restart nginx
+  sudo: True
+
+- name: enable the nginx configurations
+  file: >
+      dest=/etc/nginx/sites-enabled/{{ site_name }}.conf
+      src=/etc/nginx/sites-available/{{ site_name }}.conf
+      state=link
+  notify: restart nginx
+  sudo: True
+
+- name: remove the default nginx config file
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx
+  sudo: True

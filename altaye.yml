@@ -1,0 +1,14 @@
+- name: deploy altaye on linode servers
+  hosts: linode
+  vars:
+      site_name: altaye
+      static_root: /usr/share/nginx/html
+      nginx_conf_tmpl: roles/nginx/templates/static-nginx.conf.j2
+  pre_tasks:
+    - name: update the apt cache
+      apt: update_cache=yes
+  roles:
+    - role: nginx
+      domains:
+        - altaye.org
+        - www.altaye.org
