@@ -1,0 +1,3 @@
+[linode]
+
+linode-01 ansible_ssh_host=altaye.org ansible_ssh_user=root
