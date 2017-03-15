@@ -1,0 +1,9 @@
+- name: setup ubuntu 14.04
+  hosts: linode
+  vars:
+      site_name: altaye
+  pre_tasks:
+    - name: update the apt cache
+      apt: update_cache=yes cache_valid_time=3600
+  roles:
+    - role: common
