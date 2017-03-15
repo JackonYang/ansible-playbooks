@@ -1,0 +1,38 @@
+---
+- name: install m2crypto
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  sudo: True
+  with_items:
+    - python-m2crypto
+
+
+- name: Add the Shadowsocks user
+  user: name=shadowsocks
+        home={{ shadowsocks_location }}
+        shell=/usr/sbin/nologin
+        comment="Shadowsocks User"
+
+
+- name: Install Shadowsocks
+  pip: name=shadowsocks
+
+
+- name: Generate Shadowsocks config file
+  template: src=config.json.j2
+            dest={{ shadowsocks_location }}/config.json
+            owner=shadowsocks
+            group=shadowsocks
+            mode=640
+  notify: Restart Shadowsocks
+
+
+- name: Generate Shadowsocks init script
+  template: src=shadowsocks-init.j2
+            dest=/etc/init.d/shadowsocks
+            owner=root
+            group=root
+            mode=755
+
+- name: Enable the Shadowsocks init script so the service will start at boot
+  command: update-rc.d shadowsocks defaults
+           creates=/etc/rc0.d/K01shadowsocks
