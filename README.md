@@ -34,6 +34,19 @@ ok: [linode-01] => {
 ## tips
 
 
+#### ansible vault
+
+vault 可以加密敏感信息。
+执行含加密文件的 playbook 时，需要加 `--ask-vault-pass` 参数，
+否则报错
+
+    ERROR! Decryption failed on /path/to/ansible-playbooks/vars/secrets-ss.yml
+
+```bash
+$ ansible-playbook ubuntu-14.yml --ask-vault-pass
+```
+
+
 #### 服务器分组与命名
 
 [Pets vs. Cattle: the Elastic Cloud Story](https://es.slideshare.net/randybias/pets-vs-cattle-the-elastic-cloud-story)
