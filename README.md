@@ -26,7 +26,7 @@ ok: [linode-01] => {
 ```
 
 
-#### localhost 与github.com 的 ssh 免密码访问
+#### localhost 与 github.com 的 ssh 免密码访问
 
 
 配置方法见 GitHub 官方的帮助文档.
@@ -43,7 +43,7 @@ Hi JackonYang! You've successfully authenticated, but GitHub does not provide sh
 ## playbook 功能清单
 
 - ubuntu-14.yml: ubuntu 开发环境搭建，安装常用工具
-- altaye.yml: [altaye.org](altaye.org) 部署脚本. 一个 html 的静态页面网站
+- altaye.yml: [altaye.org](http://altaye.org) 部署脚本. 一个 html 的静态页面网站
 
 
 ## tips
@@ -57,7 +57,7 @@ ansible-vault 可以加密敏感信息。
 
     ERROR! Decryption failed on /path/to/ansible-playbooks/vars/secrets-ss.yml
 
-例如:
+用法例子:
 
 ```bash
 $ ansible-playbook ubuntu-14.yml --ask-vault-pass
@@ -68,10 +68,11 @@ $ ansible-playbook ubuntu-14.yml --ask-vault-pass
 
 
 由于 ansible 本身机制的特点:
+所有 task 都成功后，再执行 handler.
 
-所有 task 都成功后，再执行 handler
-task A 执行成功, 但后续但 task B 执行失败。handler 未执行。
-修复 task B 的 bug 后重新执行，task A 的状态是 OK 而不是 changed，不会触发 handler。
+task A 执行成功, 但后续但 task B 执行失败, handler 未执行。
+修复 task B 的 bug 后重新执行，task A 的状态是 OK 而不是 changed，也不会触发 handler。
+
 在 debug 期间，或者服务器某些配置变更时，很常见的问题。
 
 
