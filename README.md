@@ -29,3 +29,10 @@ linode-01 | SUCCESS => {
     "ping": "pong"
 }
 ```
+
+
+#### 执行 playbook
+
+```bash
+$ ansible-playbook whomai.yml
+```
