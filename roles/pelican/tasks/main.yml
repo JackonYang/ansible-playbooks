@@ -4,3 +4,11 @@
   with_items:
     - pelican
     - Markdown
+
+- name: generate the site with pelican
+  command: "pelican {{ proj_path }}/content -o {{ debug_path }}"
+  environment:
+      PATH: "{{ venv_path }}/bin"
+
+- name: deploy to static_root
+  command: "cp -R {{ debug_path }} {{ static_root }}"
