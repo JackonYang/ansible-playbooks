@@ -19,4 +19,4 @@
       site_name: "{{ proj_name }}"
     - role: git
     - role: pelican
-      debug_path: "{{ proj_path }}/public"
+      debug_path: "{{ proj_path }}/output"
