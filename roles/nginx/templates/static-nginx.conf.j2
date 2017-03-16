@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name {{ domains|join(", ") }};
+    server_name {{ domains|join(" ") }};
 
     root {{ static_root }};
     index index.html index.htm;
