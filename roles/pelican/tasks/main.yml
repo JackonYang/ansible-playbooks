@@ -1,0 +1,6 @@
+---
+- name: Install pelican
+  pip: name={{ item }} virtualenv={{ venv_path }}
+  with_items:
+    - pelican
+    - Markdown

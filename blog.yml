@@ -1,0 +1,22 @@
+- name: deploy jackon.me
+  hosts: linode
+  vars:
+      proj_name: jackon-me
+      repo_url: git@github.com:JackonYang/jackon.me.git
+      venv_path: /var/www/{{ proj_name }}
+      project_dirname: project
+      proj_path: "{{ venv_path }}/{{ project_dirname }}"
+      static_root: "{{ venv_path }}/deploy"
+      nginx_conf_tmpl: roles/nginx/templates/static-nginx.conf.j2
+  pre_tasks:
+    - name: update the apt cache
+      apt: update_cache=yes cache_valid_time=3600
+  roles:
+    - role: nginx
+      domains:
+        - jackon.me
+        - www.jackon.me
+      site_name: "{{ proj_name }}"
+    - role: git
+    - role: pelican
+      debug_path: "{{ proj_path }}/public"
