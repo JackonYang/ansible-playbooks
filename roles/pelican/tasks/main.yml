@@ -5,10 +5,22 @@
     - pelican
     - Markdown
 
+
+- name: clean debug_path
+  file: path={{ debug_path }} state=absent
+
+
 - name: generate the site with pelican
   command: "pelican {{ proj_path }}/content -o {{ debug_path }}"
+  args:
+    chdir: "{{ proj_path }}"
   environment:
-      PATH: "{{ venv_path }}/bin"
+    PATH: "{{ venv_path }}/bin"
+
+
+- name: clean static_root
+  file: path={{ static_root }} state=absent
+
 
 - name: deploy to static_root
   command: "cp -R {{ debug_path }} {{ static_root }}"
