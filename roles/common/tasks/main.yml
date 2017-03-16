@@ -4,6 +4,7 @@
   sudo: True
   with_items:
     - python-pip
+    - python-virtualenv
     - git
     - vim
 
