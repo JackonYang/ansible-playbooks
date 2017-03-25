@@ -74,6 +74,17 @@ $ ansible-playbook ubuntu-14.yml --ask-vault-pass
 ```
 
 
+#### sudo 权限
+
+
+在 playbook 中，增加 `sudo: True`
+
+
+```bash
+$ ansible-playbook gpu.yml --ask-sudo-pass
+```
+
+
 #### 强制执行 handler
 
 
