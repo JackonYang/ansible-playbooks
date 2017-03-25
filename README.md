@@ -16,6 +16,16 @@ $ cat .ssh/jackon.pub | ssh root@altaye.org "mkdir -p ~/.ssh && cat >> ~/.ssh/au
 
 测试:
 
+``bash
+$ ansible gpu -m ping
+gpu-01 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+或者
+
 ```bash
 $ ansible-playbook whomai.yml
 

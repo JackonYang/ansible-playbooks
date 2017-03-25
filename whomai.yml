@@ -1,5 +1,5 @@
 - name: show return value of command module
-  hosts: linode
+  hosts: all
   tasks:
       - name: capture output of id command
         command: id -un
