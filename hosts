@@ -1,3 +1,6 @@
 [linode]
 
 linode-01 ansible_ssh_host=altaye.org ansible_ssh_user=root
+
+[gpu]
+gpu-01 ansible_ssh_host=gpu.f3322.net ansible_ssh_port=21623 ansible_ssh_user=jackon
