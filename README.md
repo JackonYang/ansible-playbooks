@@ -16,7 +16,7 @@ $ cat .ssh/jackon.pub | ssh root@altaye.org "mkdir -p ~/.ssh && cat >> ~/.ssh/au
 
 测试:
 
-``bash
+```bash
 $ ansible gpu -m ping
 gpu-01 | SUCCESS => {
     "changed": false,
@@ -54,6 +54,7 @@ Hi JackonYang! You've successfully authenticated, but GitHub does not provide sh
 
 - ubuntu-14.yml: ubuntu 开发环境搭建，安装常用工具
 - altaye.yml: [altaye.org](http://altaye.org) 部署脚本. 一个 html 的静态页面网站
+- gpu.yml: GPU 服务器的环境部署
 
 
 ## tips
