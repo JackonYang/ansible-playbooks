@@ -80,9 +80,18 @@ $ ansible-playbook ubuntu-14.yml --ask-vault-pass
 
 在 playbook 中，增加 `sudo: True`
 
+注意: sudo 会改变 `ansible_env.HOME` 等变量的取值
 
 ```bash
 $ ansible-playbook gpu.yml --ask-sudo-pass
+```
+
+否则报错:
+
+```bash
+TASK [update the apt cache] ****************************************************
+fatal: [gpu-01]: FAILED! => {"changed": false, "failed": true, "module_stderr": "Connection to gpu.xxxx.net closed.\r\n", "module_stdout": "sudo: a password is required\r\n", "msg": "MODULE FAILURE"}
+	to retry, use: --limit @/Users/jackon/ansible-playbooks/gpu.retry
 ```
 
 
