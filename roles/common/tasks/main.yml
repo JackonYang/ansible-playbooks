@@ -13,3 +13,14 @@
   pip:
     name: pip
     extra_args: --upgrade
+
+
+# create a ~/.pip if it doesn't exist
+- file:
+    path: "{{ ansible_env.HOME }}/.pip"
+    state: directory
+
+
+- name: Generate pip.conf
+  template: src=pip.conf.j2
+            dest="{{ ansible_env.HOME }}/.pip/pip.conf"
