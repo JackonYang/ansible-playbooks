@@ -1,5 +1,5 @@
 ---
 - cron:
     name: update DDNS
-    minute: "3"
+    minute: "*/10"
     job: "curl 'http://members.3322.net/dyndns/update?system=dyndns&hostname={{ host_name }}' -u'{{ ddns_user }}:{{ ddns_password }}'"
