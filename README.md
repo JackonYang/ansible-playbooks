@@ -60,6 +60,18 @@ Hi JackonYang! You've successfully authenticated, but GitHub does not provide sh
 ## tips
 
 
+#### 执行 playbook 的命令
+
+
+有一些 playbook，既需要 vault 密码，又需要 sudo 权限
+
+```bash
+$ ansible-playbook gpu.yml --ask-vault-pass --ask-sudo-pass
+SUDO password:
+Vault password:
+```
+
+
 #### ansible vault
 
 ansible-vault 可以加密敏感信息。
