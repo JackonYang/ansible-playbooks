@@ -13,6 +13,7 @@
   pip:
     name: pip
     extra_args: --upgrade
+  sudo: True
 
 
 # create a ~/.pip if it doesn't exist
