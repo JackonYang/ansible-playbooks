@@ -1,17 +1,20 @@
-- name: deploy altaye on linode servers
+---
+- name: deploy altaye
   hosts: linode
   vars:
-      site_name: altaye
+      proj_name: altaye
       repo_url: git@github.com:JackonYang/altaye.org.git
       proj_path: /var/www/altaye
       nginx_conf_tmpl: roles/nginx/templates/static-nginx.conf.j2
   pre_tasks:
     - name: update the apt cache
-      apt: update_cache=yes
+      apt: update_cache=yes cache_valid_time=3600
+      sudo: True
   roles:
     - role: nginx
       domains:
         - altaye.org
         - www.altaye.org
+      site_name: "{{ proj_name }}"
       static_root: "{{ proj_path }}"
     - role: git
