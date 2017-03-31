@@ -10,3 +10,4 @@
   roles:
     - role: common
     - role: shadowsocks
+    - role: docker

@@ -1,0 +1,30 @@
+---
+- name: Install packages to allow apt to use a repository over HTTPS
+  apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+  sudo: True
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+
+- name: Add Docker’s official GPG key
+  shell: "curl -s https://download.docker.com/linux/ubuntu/gpg | apt-key add -"
+
+
+- name:  set up the stable repository
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+  sudo: True
+
+
+- name: install Docker CE
+  apt:
+    name: "{{ item.name }}={{ item.version }}"
+    update_cache: yes
+    cache_valid_time: 0
+  sudo: True
+  with_items:
+      - {name: docker-ce, version: 17.03.1~ce-0~ubuntu-trusty}
