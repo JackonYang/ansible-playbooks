@@ -27,4 +27,9 @@
     cache_valid_time: 0
   sudo: True
   with_items:
-      - {name: docker-ce, version: 17.03.1~ce-0~ubuntu-trusty}
+      - {name: docker-ce, version: "17.03.1~ce-0~ubuntu-{{ ansible_distribution_release }}"}
+
+
+- name: Install docker compose
+  pip: name=docker-compose
+  sudo: True
