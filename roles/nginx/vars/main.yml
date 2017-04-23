@@ -1,0 +1,3 @@
+---
+
+nginx_app_config: "{{ app_name }}-nginx.conf"
