@@ -18,4 +18,6 @@
       app_name: "{{ proj_name }}"
       nginx_conf_tmpl: static-nginx.conf.j2
       static_root: "{{ proj_path }}"
-    - role: git
+    - role: clone_code
+      # repo_url
+      # proj_path

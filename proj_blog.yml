@@ -21,6 +21,8 @@
       app_name: "{{ proj_name }}"
       nginx_conf_tmpl: static-nginx.conf.j2
       static_root: "{{ venv_path }}/deploy"
-    - role: git
+    - role: clone_code
+      # repo_url
+      # proj_path
     - role: pelican
       debug_path: "{{ proj_path }}/output"
