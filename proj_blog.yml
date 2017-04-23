@@ -9,7 +9,6 @@
       project_dirname: project
       proj_path: "{{ venv_path }}/{{ project_dirname }}"
       static_root: "{{ venv_path }}/deploy"
-      nginx_conf_tmpl: roles/nginx/templates/static-nginx.conf.j2
   pre_tasks:
     - name: update the apt cache
       apt: update_cache=yes cache_valid_time=3600
