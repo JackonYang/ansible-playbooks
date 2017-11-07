@@ -19,3 +19,10 @@
   roles:
     - role: docker
     - role: python-env
+
+    - role: nginx  # JRIA proxy
+      domains:
+        - jira.jackon.me
+      app_name: "jira"
+      nginx_conf_tmpl: port-forwarding-nginx.conf.j2
+      root_uri: "http://127.0.0.1:8080"

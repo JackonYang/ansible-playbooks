@@ -81,6 +81,12 @@ Hi JackonYang! You've successfully authenticated, but GitHub does not provide sh
 
 #### ubuntu-14.yml
 
+```bash
+$ ansible-playbook ubuntu-14.yml --ask-vault-pass --ask-sudo-pass
+SUDO password:
+Vault password:
+```
+
 阿里云环境
 
 ubuntu 开发环境搭建，安装常用工具
