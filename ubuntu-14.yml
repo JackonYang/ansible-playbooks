@@ -17,5 +17,5 @@
         - vim
 
   roles:
-  # - role: common
     - role: docker
+    - role: python-env
