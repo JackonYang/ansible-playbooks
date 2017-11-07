@@ -11,14 +11,15 @@
 命令:
 
 ```bash
-$ cat .ssh/jackon.pub | ssh root@altaye.org "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+$ cat .ssh/jackon-2017.pub | ssh root@jackon.me "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+$ ssh-add .ssh/jackon-2017
 ```
 
 测试:
 
 ```bash
-$ ansible gpu -m ping
-gpu-01 | SUCCESS => {
+$ ansible jackon.me -m ping
+jackon.me | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
@@ -29,10 +30,36 @@ gpu-01 | SUCCESS => {
 ```bash
 $ ansible-playbook whomai.yml
 
-TASK [debug] *******************************************************************
-ok: [linode-01] => {
+PLAY [show return value of command module] *********************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [jackon.me]
+ok: [gpu-01]
+ok: [proxy-hk-01]
+
+TASK [capture output of id command] ****************************************************************************************************************************
+changed: [gpu-01]
+changed: [jackon.me]
+changed: [proxy-hk-01]
+
+TASK [debug] ***************************************************************************************************************************************************
+ok: [gpu-01] => {
+    "changed": false,
+    "msg": "Logged in as user jackon"
+}
+ok: [proxy-hk-01] => {
+    "changed": false,
     "msg": "Logged in as user root"
 }
+ok: [jackon.me] => {
+    "changed": false,
+    "msg": "Logged in as user root"
+}
+
+PLAY RECAP *****************************************************************************************************************************************************
+gpu-01                     : ok=3    changed=1    unreachable=0    failed=0
+jackon.me                  : ok=3    changed=1    unreachable=0    failed=0
+proxy-hk-01                : ok=3    changed=1    unreachable=0    failed=0
 ```
 
 

@@ -1,6 +1,13 @@
-[linode]
+[aliyun]
 
-linode-01 ansible_ssh_host=altaye.org ansible_ssh_user=root
+jackon.me ansible_ssh_host=jackon.me ansible_ssh_user=root
+
 
 [gpu]
+
 gpu-01 ansible_ssh_host=gpu.f3322.net ansible_ssh_port=21623 ansible_ssh_user=jackon
+
+
+[proxy]
+
+proxy-hk-01 ansible_ssh_host=103.72.167.73 ansible_ssh_port=443 ansible_ssh_user=root
