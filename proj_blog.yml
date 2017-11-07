@@ -1,28 +1,35 @@
 #!/usr/bin/env ansible-playbook
 ---
 - name: deploy jackon.me
-  hosts: linode
+  hosts: jackon.me
   vars:
       proj_name: jackon-me
       repo_url: git@github.com:JackonYang/jackon.me.git
-      venv_path: /var/www/{{ proj_name }}
-      project_dirname: project
-      proj_path: "{{ venv_path }}/{{ project_dirname }}"
-      static_root: "{{ venv_path }}/deploy"
+      project_root: /var/www/{{ proj_name }}
+      src_path: "{{ project_root }}/src"
+      prod_path: "{{ project_root }}/prod"
+
   pre_tasks:
     - name: update the apt cache
       apt: update_cache=yes cache_valid_time=3600
       become: True
+
   roles:
+
     - role: nginx
       domains:
         - jackon.me
         - www.jackon.me
       app_name: "{{ proj_name }}"
       nginx_conf_tmpl: static-nginx.conf.j2
-      static_root: "{{ venv_path }}/deploy"
+      static_root: "{{ prod_path }}"
+
     - role: clone_code
       # repo_url
-      # proj_path
+      # src_path
+
     - role: pelican
-      debug_path: "{{ proj_path }}/output"
+      debug_path: "{{ src_path }}/output"
+      venv_path: "{{ project_root }}"
+      # src_path
+      # prod_path

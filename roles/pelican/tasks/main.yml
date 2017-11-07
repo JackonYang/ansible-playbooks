@@ -11,16 +11,16 @@
 
 
 - name: generate the site with pelican
-  command: "pelican {{ proj_path }}/content -o {{ debug_path }}"
+  command: "pelican {{ src_path }}/content -o {{ debug_path }}"
   args:
-    chdir: "{{ proj_path }}"
+    chdir: "{{ src_path }}"
   environment:
     PATH: "{{ venv_path }}/bin"
 
 
-- name: clean static_root
-  file: path={{ static_root }} state=absent
+- name: clean prod_path
+  file: path={{ prod_path }} state=absent
 
 
-- name: deploy to static_root
-  command: "cp -R {{ debug_path }} {{ static_root }}"
+- name: deploy to prod_path
+  command: "cp -R {{ debug_path }} {{ prod_path }}"

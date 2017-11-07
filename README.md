@@ -79,9 +79,26 @@ Hi JackonYang! You've successfully authenticated, but GitHub does not provide sh
 
 ## playbook 功能清单
 
-- ubuntu-14.yml: ubuntu 开发环境搭建，安装常用工具
-- altaye.yml: [altaye.org](http://altaye.org) 部署脚本. 一个 html 的静态页面网站
-- gpu.yml: GPU 服务器的环境部署
+#### ubuntu-14.yml
+
+阿里云环境
+
+ubuntu 开发环境搭建，安装常用工具
+
+#### proj_blog.yml
+
+```bash
+$ ansible-playbook proj_blog.yml
+```
+
+#### altaye.yml
+
+[altaye.org](http://altaye.org) 部署脚本. 一个 html 的静态页面网站
+
+
+#### gpu.yml
+
+GPU 服务器的环境部署
 
 
 ## tips
