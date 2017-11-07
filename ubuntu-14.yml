@@ -1,13 +1,21 @@
 ---
 - name: deploy ubuntu 14.04
-  hosts: linode
+  hosts: jackon.me
   vars_files:
     - vars/secrets-ss.yml
   pre_tasks:
+
     - name: update the apt cache
       apt: update_cache=yes cache_valid_time=3600
-      sudo: True
+      become: True
+
+    - name: install apt packages
+      apt: pkg={{ item }} update_cache=yes cache_valid_time=3600
+      become: True
+      with_items:
+        - git
+        - vim
+
   roles:
-    - role: common
-    - role: shadowsocks
+  # - role: common
     - role: docker
