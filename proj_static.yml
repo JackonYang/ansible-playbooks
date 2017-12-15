@@ -1,0 +1,28 @@
+#!/usr/bin/env ansible-playbook
+---
+- name: deploy static.jackon.me
+  hosts: jackon.me
+  vars:
+      proj_name: static-jackon-me
+      repo_url: git@github.com:JackonYang/static.git
+      project_root: /var/www/{{ proj_name }}
+      src_path: "{{ project_root }}/src"
+      prod_path: "{{ project_root }}/prod"
+
+  pre_tasks:
+    - name: update the apt cache
+      apt: update_cache=yes cache_valid_time=3600
+      become: True
+
+  roles:
+
+    - role: nginx
+      domains:
+        - static.jackon.me
+      app_name: "{{ proj_name }}"
+      nginx_conf_tmpl: static-cors-nginx.conf.j2
+      static_root: "{{ src_path }}"
+
+    - role: clone_code
+      # repo_url
+      # src_path
