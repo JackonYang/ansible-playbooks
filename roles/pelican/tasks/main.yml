@@ -1,9 +1,10 @@
 ---
 - name: Install pelican
-  pip: name={{ item }} virtualenv={{ venv_path }}
-  with_items:
-    - pelican
-    - Markdown
+  make:
+    chdir: "{{ src_path }}"
+    target: build
+  environment:
+    PYTHONPATH: /usr/local/lib/python2.7/dist-packages:/usr/lib/python2.7/dist-packages
 
 
 - name: clean debug_path
@@ -11,11 +12,11 @@
 
 
 - name: generate the site with pelican
-  command: "pelican {{ src_path }}/content -o {{ debug_path }}"
-  args:
+  make:
     chdir: "{{ src_path }}"
+    target: generate
   environment:
-    PATH: "{{ venv_path }}/bin"
+    PYTHONPATH: /usr/local/lib/python2.7/dist-packages:/usr/lib/python2.7/dist-packages
 
 
 - name: clean prod_path

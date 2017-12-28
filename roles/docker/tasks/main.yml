@@ -33,3 +33,7 @@
 - name: Install docker compose
   pip: name=docker-compose
   become: True
+
+
+- name: docker-py workaround
+  shell: "pip install -U urllib3"

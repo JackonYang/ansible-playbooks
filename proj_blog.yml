@@ -24,6 +24,7 @@
       nginx_conf_tmpl: static-nginx.conf.j2
       static_root: "{{ prod_path }}"
 
+    - role: docker
     - role: clone_code
       # repo_url
       # src_path
